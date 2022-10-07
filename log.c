@@ -20,7 +20,7 @@ void EM_LOG(const int level,const char* fun, const int line, const char *fmt, ..
 #endif
 
 
-/****************************************************************************v/
+/******************************************************/
 
 #include "log.h"
 

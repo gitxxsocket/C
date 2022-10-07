@@ -1,7 +1,58 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
+#ifndef RINGBUFFER_H_
+#define RINGBUFFER_H_
+
+typedef unsigned char u8;
+typedef unsigned int u32;
+
+void initRingbuffer(void);
+int writeRingbuffer(u8*buffer,u32 len);
+int readRingbuffer(u8*buffer,u32 len);
+
+u32 getRingbufferValidLen(void);
+void releaseRingbuffer(void);
+
+
+#endif
+
+#define BUFER_SIZE  16   //
+
+u32 vaildLen =0;
+static u8* pHead = NULL;		//used storge address
+static u8* pTail = NULL;		//
+
+static u8* pValid = NULL;		//used buff address
+static u8* pValidTail = NULL  ;  //used...
+void initRingbuffer(){
+	if(pHead ==NULL){
+		pHead = (u8*)malloc(BUFER_SIZE);
+
+	}
+	pValid = pValidTail =pHead;
+	pTail = pHead+BUFER_SIZE;
+	vaildLen =0;
+	
+}
+int main(int argc, char const *argv[])
+{
+	char c;
+	u32 readLen;
+	u8 readBuffer[10];
+
+	return 0;
+}
+
+
+
+
+
+
+/*************************************************************/ 
 #include <stdio.h>
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
+/*************************************************************/ 
 #ifdef __GNUC__
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #else
@@ -13,14 +64,50 @@ while ((USART1->SR & 0X40) == 0);
 USART1->DR = (uint8_t) ch;
 return ch;
 }
+/*************************************************************/ 
 
 
 
+#define err_t(A) do{printf(A);putchar(10);return 0 ;}while(0)
+
+#define SET_BIT_N(x,n)   (x|(1U<<(n-1)))
+
+#define CLEAN_BIT_N(x,n) (x&~(1U<<(n-1)))
+
+#define CLEAN_BIT_N_M(x,n,m) (x|((~0U)>>(32-(m-n+1))<<(n-1)))
+/*************************************************************/ 
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 
 
+int main(int argc, char const *argv[])
+{
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddItemToObject(json,"name",cJSON_CreateString("001"));
 
-#include "usart.h"
+    cJSON_AddNumberToObject(json,"age",26);
+
+    cJSON *array = NULL;
+    cJSON_AddItemToObject(json,"love",array = cJSON_CreateArray());
+    cJSON_AddItemToArray(array,cJSON_CreateString("LOL"));
+    cJSON_AddItemToArray(array,cJSON_CreateString("LOL"));
+    cJSON_AddItemToArray(array,cJSON_CreateString("LOL"));
+    cJSON_AddNumberToObject(json,"score",59);
+    cJSON_AddNumberToObject(json,"score",100);
+    char *buf =cJSON_Print(json);
+    FILE *pf = fopen("1.json","w");
+    fwrite(buf,strlen(buf),1,pf);
+    free(buf);
+    fclose(pf);
+    cJSON_Delete(json);
+
+    return 0;
+}
+/*************************************************************/ 
+
+
 
 #include <stdio.h>
 #include <string.h>
