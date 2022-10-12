@@ -46,6 +46,19 @@ int main(int argc, char const *argv[])
 }
 
 
+/*************************************************************/ 
+
+
+void float_task(void* pvPatameters){
+	static float  float_num=0.00f;
+	while (1)
+	{
+		float_num+=0.01f;
+		printf("float :  %.4f \r\n",float_num);
+		vTaskDelay(1000);
+	}
+
+}
 
 
 
@@ -65,8 +78,19 @@ USART1->DR = (uint8_t) ch;
 return ch;
 }
 /*************************************************************/ 
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+PUTCHAR_PROTOTYPE
+{
 
-
+    while ((UART4->ISR & 0X40) == 0);
+    UART4->TDR = (uint8_t) ch;
+    return ch;
+}
+/*************************************************************/ 
 
 #define err_t(A) do{printf(A);putchar(10);return 0 ;}while(0)
 
