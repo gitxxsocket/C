@@ -19,10 +19,7 @@ void EM_LOG(const int level,const char* fun, const int line, const char *fmt, ..
 #define EMLog(level, fmt...) EM_LOG(level, __FUNCTION__, __LINE__, fmt)
 #endif
 
-
 /******************************************************/
-
-#include "log.h"
 
 char *EM_LOGLevelGet(const int level)
 {
@@ -65,8 +62,6 @@ int main()
     int a = 10, b = 20;
 
     EMLog(LOG_DEBUG, "app start");
-    EM_LOG(LOG_ERROR, "A - %d", a);
-    EM_LOG(LOG_INFO, "A - %d", a);
-    EM_LOG(LOG_WARN, "A - %d", a);
+
     return 0;
 }
