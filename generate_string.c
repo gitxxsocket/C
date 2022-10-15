@@ -3,9 +3,9 @@
 #include <stdlib.h>
 int password(int password_length)
 {
-    char list[] = "1234567890qwertyuiopasdfghjklzxcvbnm!@#$%^&*()_-+=QWERTYUIOPASDFGHJKLZXCVBNM[]{};':\"<>,.?/\|";
+    char list[] = "1234567890qwertyuiopasdfghjklzxcvbnm!@#$%^&*()-+=QWERTYUIOPASDFGHJKLZXCVBNM[]{}<>?";
     printf("\t");
-    for (int i = 0; i < password_length; i++)
+    for (int i = 0; i < 100; i++)
     {
         printf("*");
     }
@@ -20,22 +20,17 @@ int password(int password_length)
     }
     printf("\n");
     printf("\t");
-    for (int i = 0; i < password_length; i++)
-    {
-        printf("*");
-    }
     printf("\n");
 }
-int main()
+int main(int argc,char **argv)
 {
-    int password_length;
-    printf("\n\t*********************************\n\n");
-    printf("\tWelcome to the password generator\n\n");
+    unsigned int password_length ;
     printf("\t*********************************\n");
     printf("\n\tEnter length of the password = ");
     scanf("%d", &password_length);
     printf("\n");
-    printf("\n");
     password(password_length);
     return 0;
 }
+
+
