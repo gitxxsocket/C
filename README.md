@@ -14,3 +14,13 @@ git push -u origin main
 You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
 
 cat /dev/null > ~/.bash_history && history -c && exit
+
+In this example, empty sata disk /dev/sdb, enter (you must be login as the root user):
+fdisk /dev/sdb
+dd if=/dev/zero of=/dev/sdb  bs=512  count=1
+fdisk -l /dev/sdb
+
+You can use the shred command to securely remove everything so that no one recover any data:
+shred -n 5 -vz /dev/sdb
+
+scrub -p dod /dev/sdb
