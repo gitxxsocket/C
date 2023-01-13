@@ -24,3 +24,6 @@ You can use the shred command to securely remove everything so that no one recov
 shred -n 5 -vz /dev/sdb
 
 scrub -p dod /dev/sdb
+
+
+https://itsfoss.com/install-arch-linux/
